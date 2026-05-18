@@ -164,7 +164,13 @@ export default function Home() {
       lead_status: "pending",
     }]);
     setStatus(error ? "error" : "success");
-    if (!error) { setForm({ name: "", phone: "", project_description: "", type: "" }); setExtras([]); }
+    if (!error) {
+      setForm({ name: "", phone: "", project_description: "", type: "" });
+      setExtras([]);
+      if (typeof window !== "undefined" && (window as any).fbq) {
+        (window as any).fbq("track", "Lead");
+      }
+    }
   };
 
   return (
