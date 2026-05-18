@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
+import FadeIn from "@/components/FadeIn";
 
 type Lang = "ar" | "fr";
 
@@ -193,19 +194,19 @@ export default function Home() {
 
           {/* Left: copy */}
           <div>
-            <span className="inline-block text-blue-400 text-sm font-semibold mb-5 tracking-widest uppercase">
+            <span className="hero-badge inline-block text-blue-400 text-sm font-semibold mb-5 tracking-widest uppercase">
               {c.hero.badge}
             </span>
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+            <h1 className="hero-title text-4xl md:text-5xl font-extrabold leading-tight mb-4">
               {c.hero.title}{" "}
               <span className="text-blue-400">{c.hero.titleAccent}</span>
             </h1>
-            <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-md">
+            <p className="hero-sub text-slate-300 text-lg leading-relaxed mb-8 max-w-md">
               {c.hero.sub}
             </p>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="hero-stats grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[c.hero.stat1, c.hero.stat2, c.hero.stat3, c.hero.stat4].map((s) => (
                 <div key={s.l} className="bg-white/5 rounded-xl px-4 py-3">
                   <div className="text-2xl font-extrabold text-white" dir="ltr">{s.n}</div>
@@ -216,7 +217,7 @@ export default function Home() {
           </div>
 
           {/* Right: FORM */}
-          <div id="form">
+          <div id="form" className="hero-form">
             {status === "success" ? (
               <div className="bg-white rounded-2xl p-10 text-center shadow-2xl">
                 <div className="text-6xl mb-4">✅</div>
@@ -355,20 +356,19 @@ export default function Home() {
       {/* SERVICES */}
       <section className="py-20 px-5 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          <FadeIn className="text-center mb-12">
             <h2 className="text-3xl font-extrabold text-gray-900 mb-3">{c.services.title}</h2>
             <p className="text-gray-500">{c.services.sub}</p>
-          </div>
+          </FadeIn>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {c.services.list.map((s) => (
-              <div
-                key={s.t}
-                className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all group cursor-default"
-              >
-                <div className="text-4xl mb-4">{s.icon}</div>
-                <h3 className="font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition">{s.t}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{s.d}</p>
-              </div>
+            {c.services.list.map((s, i) => (
+              <FadeIn key={s.t} delay={i * 100} direction="up">
+                <div className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-blue-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group cursor-default h-full">
+                  <div className="text-4xl mb-4">{s.icon}</div>
+                  <h3 className="font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition">{s.t}</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">{s.d}</p>
+                </div>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -377,20 +377,22 @@ export default function Home() {
       {/* WHY US */}
       <section className="py-20 px-5 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          <FadeIn className="text-center mb-12">
             <h2 className="text-3xl font-extrabold text-gray-900">{c.why.title}</h2>
-          </div>
+          </FadeIn>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {c.why.list.map((w) => (
-              <div key={w.t} className="flex gap-4 items-start">
-                <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-2xl shrink-0">
-                  {w.icon}
+            {c.why.list.map((w, i) => (
+              <FadeIn key={w.t} delay={i * 120} direction="up">
+                <div className="flex gap-4 items-start">
+                  <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-2xl shrink-0 hover:bg-blue-100 hover:scale-110 transition-all duration-300">
+                    {w.icon}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-900 mb-1">{w.t}</h4>
+                    <p className="text-sm text-gray-500">{w.d}</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-bold text-gray-900 mb-1">{w.t}</h4>
-                  <p className="text-sm text-gray-500">{w.d}</p>
-                </div>
-              </div>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -399,39 +401,43 @@ export default function Home() {
       {/* TESTIMONIALS */}
       <section className="py-20 px-5 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          <FadeIn className="text-center mb-12">
             <h2 className="text-3xl font-extrabold text-gray-900">{c.reviews.title}</h2>
-          </div>
+          </FadeIn>
           <div className="grid md:grid-cols-3 gap-6">
-            {c.reviews.list.map((r) => (
-              <div key={r.n} className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
-                <div className="text-yellow-400 text-lg mb-3" dir="ltr">★★★★★</div>
-                <p className="text-gray-700 text-sm leading-relaxed mb-4">&ldquo;{r.d}&rdquo;</p>
-                <div className="border-t border-gray-100 pt-4">
-                  <div className="font-bold text-gray-900 text-sm">{r.n}</div>
-                  <div className="text-xs text-gray-400">{r.t}</div>
+            {c.reviews.list.map((r, i) => (
+              <FadeIn key={r.n} delay={i * 130} direction="up">
+                <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 h-full">
+                  <div className="text-yellow-400 text-lg mb-3" dir="ltr">★★★★★</div>
+                  <p className="text-gray-700 text-sm leading-relaxed mb-4">&ldquo;{r.d}&rdquo;</p>
+                  <div className="border-t border-gray-100 pt-4">
+                    <div className="font-bold text-gray-900 text-sm">{r.n}</div>
+                    <div className="text-xs text-gray-400">{r.t}</div>
+                  </div>
                 </div>
-              </div>
+              </FadeIn>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA BANNER */}
-      <section className="bg-blue-700 py-14 px-5 text-center text-white">
-        <h2 className="text-3xl font-extrabold mb-3">
-          {lang === "ar" ? "هل أنت جاهز لإطلاق موقعك؟" : "Prêt à lancer votre site ?"}
-        </h2>
-        <p className="text-blue-200 mb-7 text-lg">
-          {lang === "ar" ? "لا تتردد — اطلب عرضك المجاني الآن" : "Ne tardez plus — demandez votre devis gratuit maintenant"}
-        </p>
-        <a
-          href="#form"
-          className="inline-block bg-white text-blue-700 font-extrabold px-10 py-4 rounded-xl text-lg hover:bg-blue-50 transition shadow-lg"
-        >
-          {c.nav.cta} →
-        </a>
-      </section>
+      <FadeIn direction="scale">
+        <section className="bg-blue-700 py-14 px-5 text-center text-white">
+          <h2 className="text-3xl font-extrabold mb-3">
+            {lang === "ar" ? "هل أنت جاهز لإطلاق موقعك؟" : "Prêt à lancer votre site ?"}
+          </h2>
+          <p className="text-blue-200 mb-7 text-lg">
+            {lang === "ar" ? "لا تتردد — اطلب عرضك المجاني الآن" : "Ne tardez plus — demandez votre devis gratuit maintenant"}
+          </p>
+          <a
+            href="#form"
+            className="btn-shimmer inline-block text-white font-extrabold px-10 py-4 rounded-xl text-lg shadow-lg hover:scale-105 transition-transform duration-200"
+          >
+            {c.nav.cta} →
+          </a>
+        </section>
+      </FadeIn>
 
       {/* FOOTER */}
       <footer className="bg-slate-900 text-slate-400 py-8 px-5 text-center text-sm">
@@ -444,7 +450,7 @@ export default function Home() {
         href="https://wa.me/212701138978"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 left-6 z-50 bg-green-500 text-white rounded-full w-14 h-14 flex items-center justify-center text-2xl shadow-xl hover:bg-green-600 hover:scale-110 transition-all"
+        className="whatsapp-btn fixed bottom-6 left-6 z-50 bg-green-500 text-white rounded-full w-14 h-14 flex items-center justify-center text-2xl shadow-xl hover:bg-green-600 hover:scale-110 transition-all"
         title="WhatsApp"
       >
         💬
