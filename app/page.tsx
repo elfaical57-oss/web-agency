@@ -229,7 +229,7 @@ export default function Home() {
                 <p className="text-sm text-gray-500 mb-6">{c.form.sub}</p>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-xs font-semibold text-gray-600 mb-1">{c.form.name} *</label>
                       <input
@@ -286,7 +286,7 @@ export default function Home() {
                             key={opt.id}
                             type="button"
                             onClick={() => toggleExtra(opt.id)}
-                            className={`flex items-center gap-2 px-3 py-2.5 rounded-lg border-2 text-sm font-medium transition-all text-start ${
+                            className={`flex items-center gap-2 px-3 py-2.5 rounded-lg border-2 text-sm font-medium transition-all text-start whitespace-nowrap overflow-hidden ${
                               checked
                                 ? "border-blue-600 bg-blue-50 text-blue-700"
                                 : "border-gray-200 bg-white text-gray-600 hover:border-blue-300"
@@ -326,8 +326,8 @@ export default function Home() {
                       </div>
                     </div>
                     {extras.length === 0 && (
-                      <p className="text-xs text-green-600 mt-0.5 text-end">
-                        {lang === "ar" ? "🎉 وفّرت 501 DH" : "🎉 Vous économisez 501 DH"}
+                      <p className="text-xs text-green-600 mt-0.5 text-end" dir="ltr">
+                        {lang === "ar" ? "🎉 501 DH وفّرت" : "🎉 Vous économisez 501 DH"}
                       </p>
                     )}
                   </div>
