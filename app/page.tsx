@@ -30,10 +30,10 @@ const t = {
       types: ["اختر نوع المشروع", "موقع تجاري / شركة", "متجر إلكتروني", "مطعم / كافيه", "عيادة / طبي", "بورتفوليو شخصي", "تحسين محركات البحث (SEO)", "قاعدة بيانات / نظام إدارة", "أخرى"],
       extras: "خيارات إضافية",
       extrasList: [
-        { id: "seo", label: "🔍 تحسين SEO" },
-        { id: "domain", label: "🌐 اسم نطاق .com" },
-        { id: "admin", label: "🗄️ لوحة تحكم (Admin)" },
-        { id: "maintenance", label: "🔧 صيانة شهرية" },
+        { id: "seo", label: "🔍 SEO" },
+        { id: "domain", label: "🌐 نطاق .com" },
+        { id: "admin", label: "🗄️ لوحة تحكم" },
+        { id: "maintenance", label: "🔧 صيانة" },
       ],
       desc: "تفاصيل المشروع (اختياري)",
       descPh: "اشرح لنا ما تحتاجه...",
@@ -96,10 +96,10 @@ const t = {
       types: ["Choisir le type de projet", "Site vitrine / entreprise", "Boutique en ligne", "Restaurant / café", "Clinique / médical", "Portfolio personnel", "Référencement SEO", "Base de données / Système de gestion", "Autre"],
       extras: "Options supplémentaires",
       extrasList: [
-        { id: "seo", label: "🔍 Référencement SEO" },
-        { id: "domain", label: "🌐 Nom de domaine .com" },
+        { id: "seo", label: "🔍 SEO" },
+        { id: "domain", label: "🌐 Domaine .com" },
         { id: "admin", label: "🗄️ Espace admin" },
-        { id: "maintenance", label: "🔧 Maintenance mensuelle" },
+        { id: "maintenance", label: "🔧 Maintenance" },
       ],
       desc: "Détails du projet (facultatif)",
       descPh: "Décrivez votre besoin...",
@@ -286,7 +286,7 @@ export default function Home() {
                             key={opt.id}
                             type="button"
                             onClick={() => toggleExtra(opt.id)}
-                            className={`flex items-center gap-2 px-3 py-2.5 rounded-lg border-2 text-sm font-medium transition-all text-start whitespace-nowrap overflow-hidden ${
+                            className={`flex items-center gap-2 px-3 py-2.5 rounded-lg border-2 text-sm font-medium transition-all text-start ${
                               checked
                                 ? "border-blue-600 bg-blue-50 text-blue-700"
                                 : "border-gray-200 bg-white text-gray-600 hover:border-blue-300"
