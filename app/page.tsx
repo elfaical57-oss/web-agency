@@ -205,11 +205,11 @@ export default function Home() {
             </p>
 
             {/* Stats */}
-            <div className="flex gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[c.hero.stat1, c.hero.stat2, c.hero.stat3, c.hero.stat4].map((s) => (
-                <div key={s.l}>
-                  <div className="text-3xl font-extrabold text-white" dir="ltr">{s.n}</div>
-                  <div className="text-slate-400 text-sm">{s.l}</div>
+                <div key={s.l} className="bg-white/5 rounded-xl px-4 py-3">
+                  <div className="text-2xl font-extrabold text-white" dir="ltr">{s.n}</div>
+                  <div className="text-slate-400 text-xs mt-0.5">{s.l}</div>
                 </div>
               ))}
             </div>
